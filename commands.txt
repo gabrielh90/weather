@@ -1,0 +1,21 @@
+#setup environment and activate
+python3 -m venv venv
+source ./venv/bin/activate
+
+
+
+pip install requests
+
+pip install typing
+
+
+wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
+python get-pip.py
+
+
+python -m pip install --upgrade pip
+
+
+
+#get the requirements
+pip freeze --local > requiements.txt
