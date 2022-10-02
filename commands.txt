@@ -1,21 +1,36 @@
-#setup environment and activate
+#setup environment and activate/deactivate
 python3 -m venv venv
 source ./venv/bin/activate
+deactivate
 
 
+#get the requirements
+pip list
 
+pip freeze --local > requiements.txt
+pip install -r requirements.txt
+
+python -m pip freeze > requirements.txt
+python -m pip install -r requirements.txt
+
+
+#install dependencies
 pip install requests
-
 pip install typing
-
-
 wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
 python get-pip.py
-
-
 python -m pip install --upgrade pip
 
 
 
-#get the requirements
-pip freeze --local > requiements.txt
+#crontab
+Checking the Status of Cron Service
+$ systemctl status cron
+$ sudo service cron start
+
+$ chmod +x Cron.sh
+$ crontab –e
+      #add line to run the script
+      * * * * * /home/gaby/Cron.sh
+
+$ sudo grep –a "Cron.sh" /var/log/syslog
