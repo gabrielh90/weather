@@ -2,8 +2,9 @@
 import logging
 from helper.API import API
 from config.ConfigReader import ConfigReader
-from helper.WeatherFileCommunication import setWeatherData
 from config.ConfigLogs import ConfigLogs
+from helper.WeatherSharedMemoryCommunication import setWeatherData
+from helper.helper import getCommandLineArgument
 
 
 def server():
@@ -14,6 +15,8 @@ def server():
     3. Make API request
     4. Write gathered data to file
     """
+    help = getCommandLineArgument('h', 'help')
+    print(help)
     ConfigLogs()
 
     configRead = ConfigReader('server')

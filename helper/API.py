@@ -1,6 +1,9 @@
 """Make the request to API."""
+import sys
 import requests
 import logging
+
+from helper.helper import getCommandLineArgument
 
 
 class API():
@@ -22,8 +25,13 @@ class API():
             'temp': None,
             'humidity': None
           }
+        key = getCommandLineArgument('k', 'key')
+        if not key:
+            logging.error('You should provide an API key')
+            sys.exit(1)
+
         self.__query = {
-          'appid': '305cf38b250725bc1abc1d56c85edf88',
+          'appid': key,
           'q': self.__town,
           'units': 'metric',
           'lang': 'en'

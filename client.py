@@ -4,7 +4,7 @@ from emailsender.EmailSender import SendEmail
 from config.ConfigLogs import ConfigLogs
 from config.ConfigReader import ConfigReader
 from config.ConfigWriter import ConfigWriter
-from helper.WeatherFileCommunication import getWeatherData
+from helper.WeatherSharedMemoryCommunication import getWeatherData
 
 
 def client():

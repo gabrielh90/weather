@@ -1,10 +1,9 @@
 """Email sender helper."""
-from config import ConfigReader
 from email.message import EmailMessage
-from helper.helper import isEmailValid
 import logging
 import smtplib
-# sys.path.append('./../')
+
+from config.ConfigReader import ConfigReader
 
 
 def SendEmail(receiverEmail, message, port=587, host='smtp.gmail.com') -> bool:
@@ -26,13 +25,6 @@ def SendEmail(receiverEmail, message, port=587, host='smtp.gmail.com') -> bool:
     password = configData['password']
     port = configData['port']
     host = configData['host']
-
-    if not isEmailValid(senderEmail) or not isEmailValid(receiverEmail):
-        logging.error('Verify that the email is set correct in config file\
- (eg: johndoe@gmail.com)')
-        # raise Exception('Verify that the email is correct')
-        # sys.exit()
-        return False
 
     email = EmailMessage()
     email['from'] = senderEmail

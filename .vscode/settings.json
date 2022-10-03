@@ -1,0 +1,13 @@
+{
+  "cSpell.words": [
+    "CREAT",
+    "emailsender",
+    "fstat",
+    "ftruncate",
+    "getsizeof",
+    "posixshmem",
+    "RDONLY",
+    "RDWR",
+    "winapi"
+  ]
+}

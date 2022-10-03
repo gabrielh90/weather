@@ -45,7 +45,11 @@ def getCommandLineArgument(shortOpt=None, longOpt=None):
         raise Exception('Function should be given at least one argument!')
 
     try:
-        opts, args = getopt.getopt(sys.argv[1:], shortOpt+':', [longOpt+'='])
+        opts, args = getopt.getopt(sys.argv[1:], 'd:v:e:s:c:k:h',
+                                   ['dumpFileName=', 'verbosityLevel=',
+                                    'emailCredentialsFileName=',
+                                    'serverFileName=',
+                                    'clientFileName=', 'key=', 'help'])
     except getopt.GetoptError as err:
         raise err
     else:

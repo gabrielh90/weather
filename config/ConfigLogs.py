@@ -1,9 +1,7 @@
 """Configure logging system."""
 import logging
 import logging.handlers as handlers
-# import getopt
-# import sys
-
+import os
 from helper.helper import getCommandLineArgument
 
 
@@ -13,6 +11,7 @@ class ConfigLogs():
     def __init__(self, filename='weather.log', level='debug') -> None:
         """Initialize script logging.
 
+          WARNING: There should be no 'logging' print before basicConfig call
         Args:
             filename (str, optional): Absolute filepath to log destination or
                                       relative to current running directory.
@@ -20,14 +19,14 @@ class ConfigLogs():
             level (str, optional): Logging verbosity level.
                                   Defaults to 'debug'.
         """
-        self.filename = filename
+        self.filename = os.path.expanduser('~') + filename
         self.level = None
         self.formatter = '%(asctime)s %(levelname)s %(filename)s\
  : %(funcName)s (%(lineno)d) %(message)s'
 
-        filename = getCommandLineArgument('d', 'dump' + 'FileName')
-        if filename:
-            self.filename = filename
+        argFilename = getCommandLineArgument('d', 'dump' + 'FileName')
+        if argFilename:
+            self.filename = argFilename
 
         verbosityLevel = getCommandLineArgument('v', 'verbosityLevel')
         if verbosityLevel:

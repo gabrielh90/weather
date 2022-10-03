@@ -16,6 +16,7 @@ class Config():
             type (str, optional): Type of the configuration file.
             Defaults to 'server'.
         """
+        logging.debug(f'Create Config object {type}')
         self.type = type
 
     @property

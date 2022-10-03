@@ -4,8 +4,6 @@ import json
 
 from helper.helper import isFloat
 
-# from multiprocessing import shared_memory
-
 
 def setWeatherData(weatherForecast):
     """Write to file weather for inter applications communication.
@@ -15,25 +13,12 @@ def setWeatherData(weatherForecast):
     """
     try:
         fileName = '/tmp/WeatherData.txt'
+        logging.info(f'Writing weather data file {fileName}')
         with open(fileName, 'w') as f_obj:
             json.dump(weatherForecast, f_obj)
     except Exception as ex:
         logging.error(f'Unexpected error: {fileName} is', repr(ex))
-
-
-# def setWeatherDataSharedMemory(weatherForecast):
-#     """Writes to file weather for inter applications communication.
-
-#     Args:
-#         weatherForecast (dictionary): town, temperature and humidity
-#     """
-#     try:
-#         fileName = '/tmp/WeatherData.txt'
-#         existing_shm = shared_memory.SharedMemory(name='psm_21467_46075')
-#         with open(fileName, 'w') as f_obj:
-#             json.dump(weatherForecast, f_obj)
-#     except Exception as ex:
-#         logging.error(f'Unexpected error: {fileName} is', repr(ex))
+        exit()
 
 
 def getWeatherData():
@@ -46,7 +31,7 @@ def getWeatherData():
 
     try:
         fileName = '/tmp/WeatherData.txt'
-        logging.info(f'Reading config file {fileName}')
+        logging.info(f'Reading weather data file {fileName}')
         with open(fileName, 'r+') as f_obj:
             weatherForecast = json.load(f_obj)
     except FileNotFoundError:

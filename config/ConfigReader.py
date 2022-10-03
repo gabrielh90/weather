@@ -22,6 +22,7 @@ class ConfigReader(Config):
             Defaults to 'server'.
         """
         super().__init__(type)
+        logging.debug(f'Create Config Reader object{self.type}')
         self.__configData = {}
 
         self.config = ConfigParser()
@@ -31,10 +32,10 @@ class ConfigReader(Config):
     def readConfigFile(self):
         """Read the configuration file."""
         try:
-            logging.info(f'Reading config file {self.filepathConfig}')
-            self.config.read(filenames=self.filepathConfig)
+            logging.info(f'Reading config file {self.configFilePath}')
+            self.config.read(filenames=self.configFilePath)
         except Exception as ex:
-            logging.warning(f'Unexpected error: {self.filepathConfig} is',
+            logging.warning(f'Unexpected error: {self.configFilePath} is',
                             repr(ex))
         else:
             logging.debug(self.config)
@@ -76,7 +77,6 @@ class ConfigReader(Config):
             else:
                 logging.exception('Verify that the email \
 is set correct in config file')
-                # raise Exception('Verify that the email is correct')
                 sys.exit()
 
             if 'tempThreshold' in self.config['USER'] and \
@@ -125,14 +125,12 @@ set in config file')
             else:
                 logging.error('Verify that the email is set correct \
 in config file')
-                # raise Exception('Verify that the email is correct')
                 sys.exit()
 
             if 'password' in self.config['USER']:
                 self.__configData['password'] = self.config['USER']['password']
             else:
                 logging.error('Verify that the password is set in config file')
-                # raise Exception('Verify that the email is correct')
                 sys.exit()
 
             if 'port' in self.config['USER']:

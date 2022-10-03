@@ -19,6 +19,7 @@ class ConfigWriter(Config):
                                   Defaults to 'server'.
         """
         super().__init__(type)
+        logging.debug('Create Config Writer object')
         self.config = ConfigParser()
 
     def serverConfig(self, town=''):
@@ -57,10 +58,10 @@ class ConfigWriter(Config):
 
     def writeConfigFile(self):
         """Write configuration to file."""
-        logging.info(f'Config file path: {self.filepathConfig}')
+        logging.info(f'Config file path: {self.configFilePath}')
         try:
-            with open(self.filepathConfig, 'w') as f:
+            with open(self.configFilePath, 'w') as f:
                 self.config.write(f)
         except Exception as ex:
-            logging.error(f'Unexpected error: {self.filepathConfig} is',
+            logging.error(f'Unexpected error: {self.configFilePath} is',
                           repr(ex))
