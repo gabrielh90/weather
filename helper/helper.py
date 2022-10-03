@@ -55,9 +55,33 @@ def getCommandLineArgument(shortOpt=None, longOpt=None):
     else:
         for opt, arg in opts:
             if opt in ('-' + shortOpt, '--' + longOpt):
-                return arg
+                if arg:
+                    return arg
+                else:
+                    return True
 
     return None
+
+
+def getHelper():
+    """Get helper menu.
+
+    Returns:
+        _type_: Return helper menu
+    """
+    menu = ''
+    menu += '-d, --dumpFileName\n'
+    menu += '-v, --verbosityLevel\n'
+    menu += '-e, --emailCredentialsFileName\n'
+    menu += '-s, --serverFileName\n'
+    menu += '-c, --clientFileName\n'
+    menu += '-k, --key\n'
+    menu += '-h, --help\n'
+    menu += 'Examples:\n'
+    menu += 'python client.py -k 305cf38b250725bc1abc1d56c85edf88 -d /home/gaby/projects/weather/weather.log -v debug --help\n'
+    menu += 'python server.py -k 305cf38b250725bc1abc1d56c85edf88 -d /home/gaby/projects/weather/weather.log -v debug --help\n'
+
+    return menu
 
 
 def isFloat(num):

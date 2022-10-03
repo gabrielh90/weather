@@ -5,6 +5,7 @@ from config.ConfigLogs import ConfigLogs
 from config.ConfigReader import ConfigReader
 from config.ConfigWriter import ConfigWriter
 from helper.WeatherSharedMemoryCommunication import getWeatherData
+from helper.helper import getCommandLineArgument, getHelper
 
 
 def client():
@@ -20,6 +21,11 @@ def client():
     6. Send an email if the difference between previous and current weather \
       data is greater than threshold values
     """
+
+    if getCommandLineArgument('h', 'help'):
+        print(getHelper())
+        exit()
+
     ConfigLogs()
 
     configData = ConfigReader('client').configData
