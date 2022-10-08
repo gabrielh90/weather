@@ -34,3 +34,7 @@ $ crontab –e
       * * * * * /home/gaby/Cron.sh
 
 $ sudo grep –a "Cron.sh" /var/log/syslog
+
+
+python server.py -k 305cf38b250725bc1abc1d56c85edf88 -d /home/gaby/projects/weather/weather.log -v debug --help
+python client.py -k 305cf38b250725bc1abc1d56c85edf88 -d /home/gaby/projects/weather/weather.log -v debug --help

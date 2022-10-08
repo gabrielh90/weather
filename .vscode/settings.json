@@ -5,6 +5,7 @@
     "fstat",
     "ftruncate",
     "getsizeof",
+    "levelname",
     "posixshmem",
     "RDONLY",
     "RDWR",

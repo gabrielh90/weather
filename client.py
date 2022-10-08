@@ -21,7 +21,6 @@ def client():
     6. Send an email if the difference between previous and current weather \
       data is greater than threshold values
     """
-
     if getCommandLineArgument('h', 'help'):
         print(getHelper())
         exit()

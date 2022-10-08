@@ -1,0 +1,11 @@
+1. global logging system - check file size
+
+2. handle global exception hoc/decorator
+
+3. unit testing
+
+4. synchronize/lock for sharedmemory/file access so will not overlap
+
+5. check file log file exists, if exits verify it can be written otherwise try to create and write on it
+
+6. configuration file examples on help

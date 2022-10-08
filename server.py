@@ -15,7 +15,6 @@ def server():
     3. Make API request
     4. Write gathered data to file
     """
-
     if getCommandLineArgument('h', 'help'):
         print(getHelper())
         exit()

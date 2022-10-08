@@ -39,7 +39,7 @@ def getCommandLineArgument(shortOpt=None, longOpt=None):
         err: GetoptError
 
     Returns:
-        _type_: option value if was given as argument otherwise value None
+        None/bool/str: option value if was given as argument otherwise value None
     """
     if not shortOpt and not longOpt:
         raise Exception('Function should be given at least one argument!')
@@ -67,19 +67,22 @@ def getHelper():
     """Get helper menu.
 
     Returns:
-        _type_: Return helper menu
+        str: Return helper menu
     """
     menu = ''
-    menu += '-d, --dumpFileName\n'
-    menu += '-v, --verbosityLevel\n'
-    menu += '-e, --emailCredentialsFileName\n'
-    menu += '-s, --serverFileName\n'
-    menu += '-c, --clientFileName\n'
-    menu += '-k, --key\n'
+    menu += '-d, --dumpFileName\tLogs destination file name\n'
+    menu += '-v, --verbosityLevel\tVerbosity level: debug, info and warning\n'
+    menu += '-e, --emailCredentialsFileName \tEmail and Password Credentials \
+file name\n'
+    menu += '-s, --serverFileName\tClient Side Configuration file name\n'
+    menu += '-c, --clientFileName\tClient Side Configuration file name \n'
+    menu += '-k, --key\tAPI weather key\n'
     menu += '-h, --help\n'
     menu += 'Examples:\n'
-    menu += 'python client.py -k 305cf38b250725bc1abc1d56c85edf88 -d /home/gaby/projects/weather/weather.log -v debug --help\n'
-    menu += 'python server.py -k 305cf38b250725bc1abc1d56c85edf88 -d /home/gaby/projects/weather/weather.log -v debug --help\n'
+    menu += 'python client.py -k 305cf38b250725bc1abc1d56c85edf88 -d \
+      /home/gaby/projects/weather/weather.log -v debug --help\n'
+    menu += 'python server.py -k 305cf38b250725bc1abc1d56c85edf88 -d \
+      /home/gaby/projects/weather/weather.log -v debug --help\n'
 
     return menu
 

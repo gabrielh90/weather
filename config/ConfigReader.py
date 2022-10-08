@@ -39,13 +39,14 @@ class ConfigReader(Config):
                             repr(ex))
         else:
             logging.debug(self.config)
-        finally:
             if self.type == 'server':
                 self.serverConfig()
             elif self.type == 'client':
                 self.clientConfig()
             elif self.type == 'emailCredentials':
                 self.emailCredentialsConfig()
+
+            logging.info(self.configData)
 
     def serverConfig(self):
         """Verify and sets server configuration."""
@@ -55,9 +56,8 @@ class ConfigReader(Config):
         if 'USER' in self.config and self.config['USER']['town']:
             self.__configData['town'] = self.config['USER']['town']
         else:
-            logging.error('Applying default config values for server side!')
+            logging.critical('Applying default config values for server side!')
             sys.exit()
-        logging.info(self.configData)
 
     def clientConfig(self):
         """Verify and sets client configuration."""
@@ -75,7 +75,7 @@ class ConfigReader(Config):
                   isEmailValid(self.config['USER']['email']):
                 self.__configData['email'] = self.config['USER']['email']
             else:
-                logging.exception('Verify that the email \
+                logging.critical('Verify that the email \
 is set correct in config file')
                 sys.exit()
 
@@ -84,7 +84,7 @@ is set correct in config file')
                 self.__configData['tempThreshold'] = \
                     float(self.config['USER']['tempThreshold'])
             else:
-                logging.warning('Verify temperature threshold \
+                logging.critical('Verify temperature threshold \
 is set in config file')
                 sys.exit()
 
@@ -93,7 +93,7 @@ is set in config file')
                 self.__configData['humidityThreshold'] = \
                     float(self.config['USER']['humidityThreshold'])
             else:
-                logging.warning('Verify humidity threshold is \
+                logging.critical('Verify humidity threshold is \
 set in config file')
                 sys.exit()
 
@@ -108,8 +108,6 @@ set in config file')
                 self.__configData['humidity'] = \
                     self.config.getfloat('USER', 'humidity')
 
-        logging.info(self.configData)
-
     def emailCredentialsConfig(self):
         """Verify and sets server configuration."""
         self.__configData = {
@@ -123,22 +121,21 @@ set in config file')
                   isEmailValid(self.config['USER']['email']):
                 self.__configData['senderEmail'] = self.config['USER']['email']
             else:
-                logging.error('Verify that the email is set correct \
+                logging.critical('Verify that the email is set correct \
 in config file')
                 sys.exit()
 
             if 'password' in self.config['USER']:
                 self.__configData['password'] = self.config['USER']['password']
             else:
-                logging.error('Verify that the password is set in config file')
+                logging.critical('Verify that the password is set \
+in config file')
                 sys.exit()
 
             if 'port' in self.config['USER']:
                 self.__configData['port'] = self.config['USER']['port']
             if 'host' in self.config['USER']:
                 self.__configData['host'] = self.config['USER']['host']
-
-        logging.info(self.configData)
 
     @property
     def configData(self):
